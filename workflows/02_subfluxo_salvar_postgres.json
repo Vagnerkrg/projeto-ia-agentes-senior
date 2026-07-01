@@ -1,0 +1,137 @@
+{
+  "name": "salvar_agendamento_postgres",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c262c90d-f878-42a2-87a1-f41ac1ae88ad",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "agendamentos",
+          "mode": "list",
+          "cachedResultName": "agendamentos"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "cliente_nome": "={{ $json.cliente_nome }}",
+            "cliente_telefone": "={{ $json.cliente_telefone }}\n",
+            "servico": "={{ $json.servico }}\n"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cliente_nome",
+              "displayName": "cliente_nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cliente_telefone",
+              "displayName": "cliente_telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "servico",
+              "displayName": "servico",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data_agendamento",
+              "displayName": "data_agendamento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        208,
+        0
+      ],
+      "id": "e6c3968b-972b-4bb6-8335-6999485b5951",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "3amym3Po7zwhSym9",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "d4f41e00-121e-40fd-a622-2618f697457d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "43ffeecf30f7524d3414bde64b75a222b9db02c4ea07548b6e69928f4b05af55"
+  },
+  "nodeGroups": [],
+  "id": "CPstNnmSfktoTEuV",
+  "tags": []
+}
