@@ -18,7 +18,7 @@ async def mock_openai_endpoint(request: Request):
         dados = await request.json()
         print(f"📥 [Python Backend] Requisição recebida do n8n: {dados}")
         
-        # Simula a resposta estruturada do modelo cognitivo de IA
+        # Simula a resposta estruturada no padrão OpenAI Chat Completions
         resposta_mock = {
             "id": "chatcmpl-mock123",
             "object": "chat.completion",
@@ -48,4 +48,5 @@ async def mock_openai_endpoint(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
+    # Inicializa o servidor FastAPI na porta 5000 com reload ativo
     uvicorn.run("app:app", host="0.0.0.0", port=5000, reload=True)
