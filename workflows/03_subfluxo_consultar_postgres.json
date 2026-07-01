@@ -1,0 +1,67 @@
+{
+  "name": "consultar_agendamento_postgres",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "consultar_agendamento_postgres",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        272,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT cliente_nome, servico, data_agendamento \nFROM agendamentos \nWHERE cliente_telefone = '{{ $json.cliente_telefone }}'\nORDER BY data_agendamento DESC;\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        480,
+        352
+      ],
+      "id": "dec1c313-dd1b-45c9-af53-23e9f0eee3e4",
+      "name": "Execute a SQL query",
+      "credentials": {
+        "postgres": {
+          "id": "3amym3Po7zwhSym9",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "consultar_agendamento_postgres": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "1d02cfbe-1731-4e1a-946e-a91e95d429e4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "43ffeecf30f7524d3414bde64b75a222b9db02c4ea07548b6e69928f4b05af55"
+  },
+  "nodeGroups": [],
+  "id": "ofc0iltafPTkJA0w",
+  "tags": []
+}
