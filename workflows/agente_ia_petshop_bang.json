@@ -9,7 +9,7 @@
       "typeVersion": 1.4,
       "position": [
         -16,
-        -32
+        -64
       ],
       "id": "062c149d-0773-4939-a9ff-dabecaa7d03c",
       "name": "When chat message received",
@@ -22,8 +22,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        272,
-        -32
+        336,
+        -64
       ],
       "id": "20c5e8a6-e421-4752-891a-db0475a8e5bc",
       "name": "AI Agent"
@@ -33,20 +33,41 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.4,
       "position": [
-        336,
-        192
+        400,
+        160
       ],
       "id": "ae4094d0-8dce-43fb-9a46-d8c2c574f873",
       "name": "Simple Memory"
     },
     {
       "parameters": {
-        "description": "=Use esta ferramenta obrigatoriamente quando o cliente solicitar o agendamento de serviços de Pet Shop, fornecendo nome do pet e horario.",
+        "model": "=llama3.2",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        208,
+        160
+      ],
+      "id": "1db8329a-8f51-45ef-8a90-b808f7fa7ee9",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "wi3jj199YChRkOCe",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "Use esta ferramenta obrigatoriamente quando o cliente solicitar a verificação, consulta ou confirmação de um agendamento existente no Pet Shop, fornecendo obrigatoriamente o número de telefone do cliente.",
         "workflowId": {
           "__rl": true,
-          "value": "=salvar_agendamento_postgres",
-          "mode": "id",
-          "cachedResultUrl": "/workflow/=salvar_agendamento_postgres"
+          "value": "ofc0iltafPTkJA0w",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/ofc0iltafPTkJA0w",
+          "cachedResultName": "consultar_agendamento_postgres"
         },
         "workflowInputs": {
           "mappingMode": "defineBelow",
@@ -60,31 +81,39 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        496,
-        192
+        560,
+        160
       ],
-      "id": "9f9dc641-edcc-4205-a67c-436491306d75",
-      "name": "Call n8n Workflow Tool"
+      "id": "c2c9cd44-a980-4db4-82ca-7a4b0012b35b",
+      "name": "Consultar_Agendamento_Tool"
     },
     {
       "parameters": {
-        "model": "=llama3.2",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
-      "typeVersion": 1,
-      "position": [
-        144,
-        176
-      ],
-      "id": "1db8329a-8f51-45ef-8a90-b808f7fa7ee9",
-      "name": "Ollama Chat Model",
-      "credentials": {
-        "ollamaApi": {
-          "id": "wi3jj199YChRkOCe",
-          "name": "Ollama account"
+        "description": "=Use esta ferramenta OBRIGATORIAMENTE quando o cliente quiser MARCAR, CADASTRAR, RESERVAR ou FAZER um NOVO agendamento de serviço no Pet Shop.",
+        "workflowId": {
+          "__rl": true,
+          "value": "CPstNnmSfktoTEuV",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/CPstNnmSfktoTEuV",
+          "cachedResultName": "salvar_agendamento_postgres"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         }
-      }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        160
+      ],
+      "id": "9f9dc641-edcc-4205-a67c-436491306d75",
+      "name": "Criar_Agendamento_Tool"
     }
   ],
   "pinData": {},
@@ -111,7 +140,18 @@
         ]
       ]
     },
-    "Call n8n Workflow Tool": {
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consultar_Agendamento_Tool": {
       "ai_tool": [
         [
           {
@@ -122,12 +162,12 @@
         ]
       ]
     },
-    "Ollama Chat Model": {
-      "ai_languageModel": [
+    "Criar_Agendamento_Tool": {
+      "ai_tool": [
         [
           {
             "node": "AI Agent",
-            "type": "ai_languageModel",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -140,7 +180,7 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "c1a9183f-2b7c-457f-9b21-d3e40242ba8d",
+  "versionId": "1663ca54-7f4b-491c-8904-2c75f040c31e",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "43ffeecf30f7524d3414bde64b75a222b9db02c4ea07548b6e69928f4b05af55"
