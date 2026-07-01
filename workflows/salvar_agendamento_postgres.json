@@ -3,7 +3,22 @@
   "nodes": [
     {
       "parameters": {
-        "inputSource": "passthrough"
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "cliente"
+            },
+            {
+              "name": "pet"
+            },
+            {
+              "name": "servico"
+            },
+            {
+              "name": "data_hora"
+            }
+          ]
+        }
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.2,
@@ -32,7 +47,8 @@
           "value": {
             "cliente_nome": "={{ $json.cliente_nome }}",
             "cliente_telefone": "={{ $json.cliente_telefone }}\n",
-            "servico": "={{ $json.servico }}\n"
+            "servico": "={{ $json.servico }}\n",
+            "id": 0
           },
           "matchingColumns": [
             "id"
@@ -120,13 +136,13 @@
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "d4f41e00-121e-40fd-a622-2618f697457d",
+  "versionId": "89241456-d7b1-4e9e-8626-e34359ca9011",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "43ffeecf30f7524d3414bde64b75a222b9db02c4ea07548b6e69928f4b05af55"

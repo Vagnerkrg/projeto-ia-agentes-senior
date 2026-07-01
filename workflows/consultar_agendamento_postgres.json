@@ -3,7 +3,13 @@
   "nodes": [
     {
       "parameters": {
-        "inputSource": "passthrough"
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "cliente"
+            }
+          ]
+        }
       },
       "id": "c055762a-8fe7-4141-a639-df2372f30060",
       "typeVersion": 1.1,
@@ -17,7 +23,7 @@
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "SELECT cliente_nome, servico, data_agendamento \nFROM agendamentos \nWHERE cliente_telefone = '{{ $json.cliente_telefone }}'\nORDER BY data_agendamento DESC;\n",
+        "query": "SELECT cliente_nome, service, data_agendamento \nFROM agendamentos \nWHERE cliente_nome ILIKE '%{{ $json.cliente }}%'\nORDER BY data_agendamento DESC;\n",
         "options": {}
       },
       "type": "n8n-nodes-base.postgres",
@@ -50,13 +56,13 @@
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "1d02cfbe-1731-4e1a-946e-a91e95d429e4",
+  "versionId": "1e62c52a-2332-4a8e-bbcf-9541d981bd04",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "43ffeecf30f7524d3414bde64b75a222b9db02c4ea07548b6e69928f4b05af55"
